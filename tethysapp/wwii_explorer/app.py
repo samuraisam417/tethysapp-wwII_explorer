@@ -8,7 +8,7 @@ class WwiiExplorer(TethysAppBase):
 
     name = 'WWII Explorer'
     index = 'wwii_explorer:home'
-    icon = 'wwii_explorer/images/icon.gif'
+    icon = 'wwii_explorer/images/ww2flag.png'
     package = 'wwii_explorer'
     root_url = 'wwii-explorer'
     color = '#34495e'
