@@ -56,7 +56,6 @@ target/
 
 # Other backup files
 *~
-*.kml
 *.nc
 *.egg-info
 *.txt
