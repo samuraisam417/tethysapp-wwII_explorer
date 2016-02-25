@@ -26,6 +26,9 @@ class WwiiExplorer(TethysAppBase):
         url_maps = (UrlMap(name='home',
                            url='wwii-explorer',
                            controller='wwii_explorer.controllers.home'),
+                    UrlMap(name='map',
+                           url='wwii-explorer/map',
+                           controller='wwii_explorer.controllers.map'),
         )
 
         return url_maps

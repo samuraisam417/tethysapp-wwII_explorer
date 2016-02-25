@@ -4,13 +4,16 @@
 
 {% block app_content %}
 <h1>Welcome to the WWII Explorer!</h1>
-<p>Congratulations on creating a new Tethys app!</p>
+<p>Check out the world powers. Click the "Next" button to begin exploring WWII Events.</p>
 <!--<img id="flag" src="{% static 'wwii_explorer/images/ww2flag.png' %}">-->
 <p>Created by Shawn and Sam</p>
 <div id="map" class="map"></div>
 {% endblock %}
 
 {% block app_actions %}
-<a href="" class="btn btn-default">Next</a>
-<a href="" class="btn btn-default">Back</a>
+<a href="{% url 'wwii_explorer:map' %}" id="btn-explore" class="btn btn-default">Start Exploring</a>
+<a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event hidden">Previous Event</a>
+<a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event hidden">Home</a>
+<a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event hidden">Next Event</a>
+<!--<a href="" class="btn btn-default">Back</a>-->
 {% endblock %}

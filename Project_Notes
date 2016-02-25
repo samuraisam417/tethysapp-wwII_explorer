@@ -1,0 +1,53 @@
+Project Notes
+WWII Explorer
+
+*************************************************
+Overall Ideas:
+
+First use, url tag = #0 (triggers events below)
+
+Click a button
+    Read url tag
+    Change url tag
+        event = event + 1
+        event = 0
+        event = event -1
+
+update url tag (triggers map updates)
+    When url tag = #0 (home)
+        Load Home screen Features (hid navigation bar, show/hide buttons)
+     else url tag <> #0 (all other events)
+        Load Event Screen Features (navigation bar, show/hide button)
+    Clear Map
+    Read database
+    Pull Line of Event Data
+        Load list of KML Files
+        add point
+        add pop-up bubble to point
+        Change map center
+        Change map zoom
+    Add url tag
+    Update Map
+
+
+
+*************************************************************
+Assignmnets:
+
+General
+    Design pop up bubble
+
+
+Shawn
+    Look into SQL database
+
+
+Sam
+    Finish Lat/Lon data tables
+    Finish database
+
+
+Ideas
+    Add event to database option
+    Feedback
+
