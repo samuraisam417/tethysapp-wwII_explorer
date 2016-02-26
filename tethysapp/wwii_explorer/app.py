@@ -32,3 +32,15 @@ class WwiiExplorer(TethysAppBase):
         )
 
         return url_maps
+
+    def persistent_stores(self):
+        """
+        Add one or more persistent stores
+        """
+        stores = (PersistentStore(name='wwii_events_db',
+                                  initializer='init_stores:init_wwii_events_db',
+                                  spatial=False
+                )
+        )
+
+        return stores
