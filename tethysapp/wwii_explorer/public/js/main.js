@@ -11,9 +11,6 @@ var map = new ol.Map({
     })
 });
 
-
-
-//$.
 //Clear map
 //Read database
 //Create function that will load the map with the desired KML files
@@ -22,37 +19,13 @@ var kmlLayer = new ol.layer.Vector({
         source: new ol.source.Vector({
           url: '/static/wwii_explorer/data/kml/Germany.kml',
           format: new ol.format.KML()
-        })
+        }
       });
 map.addLayer(kmlLayer);
 
 //kmlLayer = new ol.layer.Vector({
 //        source: new ol.source.Vector({
 //          url: '/static/wwii_explorer/data/home_data/Italy.kml',
-//          format: new ol.format.KML()
-//        })
-//      });
-//map.addLayer(kmlLayer);
-//
-//kmlLayer = new ol.layer.Vector({
-//        source: new ol.source.Vector({
-//          url: '/static/wwii_explorer/data/home_data/China.kml',
-//          format: new ol.format.KML()
-//        })
-//      });
-//map.addLayer(kmlLayer);
-//
-//kmlLayer = new ol.layer.Vector({
-//        source: new ol.source.Vector({
-//          url: '/static/wwii_explorer/data/home_data/United_States.kml',
-//          format: new ol.format.KML()
-//        })
-//      });
-//map.addLayer(kmlLayer);
-//
-//kmlLayer = new ol.layer.Vector({
-//        source: new ol.source.Vector({
-//          url: '/static/wwii_explorer/data/home_data/Japan.kml',
 //          format: new ol.format.KML()
 //        })
 //      });

@@ -1,0 +1,25 @@
+{% extends "wwii_explorer/base.html" %}
+
+{% load tethys_gizmos %}
+
+{% load staticfiles %}
+
+{% block app_navigation_items %}
+<!--Allow users to see list of event-->
+<!--allow users to click on item, update map for event-->
+{% endblock %}
+
+
+{% block app_content %}
+<h1>Welcome to the WWII Explorer!</h1>
+<p>Navigate between events using the bottons below.</p>
+<div id="map" class="map"></div>
+{% endblock %}
+
+
+{% block app_actions %}
+  <a href="{% url 'wwii_explorer:map' %}" id="btn-explore" class="btn btn-default hidden">Start Exploring</a>
+  <a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event">Previous Event</a>
+  <a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event">Home</a>
+  <a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event">Next Event</a>
+{% endblock %}

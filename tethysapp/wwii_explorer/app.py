@@ -12,7 +12,7 @@ class WwiiExplorer(TethysAppBase):
     package = 'wwii_explorer'
     root_url = 'wwii-explorer'
     color = '#34495e'
-    description = 'Place a brief description of your app here.'
+    description = 'This app allows the user to navigate through key events of World War 2.'
     enable_feedback = False
     feedback_emails = []
 

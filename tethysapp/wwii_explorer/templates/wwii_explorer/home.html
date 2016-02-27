@@ -1,10 +1,12 @@
 {% extends "wwii_explorer/base.html" %}
 
+{% load tethys_gizmos %}
+
 {% load staticfiles %}
 
 {% block app_content %}
 <h1>Welcome to the WWII Explorer!</h1>
-<p>Check out the world powers. Click the "Next" button to begin exploring WWII Events.</p>
+<p>Check out the world powers. Click the "Start Exploring" button to begin exploring WWII Events.</p>
 <!--<img id="flag" src="{% static 'wwii_explorer/images/ww2flag.png' %}">-->
 <p>Created by Shawn and Sam</p>
 <div id="map" class="map"></div>
@@ -15,5 +17,4 @@
 <a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event hidden">Previous Event</a>
 <a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event hidden">Home</a>
 <a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event hidden">Next Event</a>
-<!--<a href="" class="btn btn-default">Back</a>-->
 {% endblock %}

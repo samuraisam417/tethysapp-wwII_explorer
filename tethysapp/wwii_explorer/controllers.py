@@ -31,4 +31,4 @@ def map(request):
     # refresh map, send back to user
     context = {}
 
-    return
+    return render(request, 'wwii_explorer/map.html', context)
