@@ -8,6 +8,9 @@ def init_wwii_events_db(first_time):
     Base.metadata.create_all(engine)
 
     if first_time:
+
+        print "CREATING DATABASE"
+
         # Make session
         session = SessionMaker()
 
@@ -20,7 +23,12 @@ def init_wwii_events_db(first_time):
         # values_list = worksheet.row_values(1)
         lists_of_event_data = worksheet.get_all_values()
 
-        for list in lists_of_event_data:
-            session.add(Event(*list))
+        ignore_list = True
+        for data_list in lists_of_event_data:
+            if ignore_list:
+                ignore_list = False
+                continue
+            print "ADDING EVENT"
+            session.add(Event(*data_list))
 
         session.commit()

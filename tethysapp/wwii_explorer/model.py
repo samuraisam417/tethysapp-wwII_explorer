@@ -8,23 +8,24 @@ engine = WwiiExplorer.get_persistent_store_engine('wwii_events_db')
 SessionMaker = sessionmaker(bind=engine)
 Base = declarative_base()
 
+
 class Event(Base):
-    '''
+    """
     Example SQLAlchemy DB Model
-    '''
+    """
     __tablename__ = 'wwii_events'
 
     # Columns
     page_index = Column(Integer, primary_key=True)
     date_index = Column(Date)
     date = Column(String(50))
-    title = Column(String(50))
+    title = Column(String(75))
     description = Column(Text)
     more_info = Column(Text)
     photo_url = Column(String(200))
-    latitude= Column(Float)
+    latitude = Column(Float)
     longitude = Column(Float)
-    zoom_level= Column(Integer)
+    zoom_level= Column(Float)
     kml_files = Column(String(100))
 
 
