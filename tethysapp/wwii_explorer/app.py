@@ -1,4 +1,5 @@
 from tethys_sdk.base import TethysAppBase, url_map_maker
+from tethys_sdk.stores import PersistentStore
 
 
 class WwiiExplorer(TethysAppBase):
@@ -16,19 +17,30 @@ class WwiiExplorer(TethysAppBase):
     enable_feedback = False
     feedback_emails = []
 
-        
     def url_maps(self):
         """
         Add controllers
         """
-        UrlMap = url_map_maker(self.root_url)
+        url_map = url_map_maker(self.root_url)
 
-        url_maps = (UrlMap(name='home',
-                           url='wwii-explorer',
-                           controller='wwii_explorer.controllers.home'),
-                    UrlMap(name='map',
-                           url='wwii-explorer/map',
-                           controller='wwii_explorer.controllers.map'),
-        )
+        url_maps = (url_map(name='home',
+                            url='wwii-explorer',
+                            controller='wwii_explorer.controllers.home'),
+                    url_map(name='map',
+                            url='wwii-explorer/map',
+                            controller='wwii_explorer.controllers.map'),
+                    )
 
         return url_maps
+
+    def persistent_stores(self):
+        """
+        Add one or more persistent stores
+        """
+        stores = [PersistentStore(name='wwii_events_db',
+                                  initializer='wwii_explorer.init_stores.init_wwii_events_db',
+                                  spatial=False
+                                  )
+                  ]
+
+        return stores

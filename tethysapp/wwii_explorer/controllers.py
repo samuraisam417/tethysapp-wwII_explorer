@@ -1,17 +1,31 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .model import SessionMaker, Event
 
-# page_index = 0
 
 @login_required()
 def home(request):
-    # global page_index
-    # page_index = 0
-
     """
     Controller for the app home page.
     """
-    context = {}
+    print "IN HOME CONTROLLER"
+
+    session = SessionMaker()
+
+    events = session.query(Event).order_by(Event.page_index).all()
+
+    session.close()
+
+    event_page_and_title = []
+
+    for event in events:
+        print event
+        event_page_and_title.append({
+            'page':  event.page_index,
+            'title': event.title
+        })
+
+    context = {'events': event_page_and_title}
 
     return render(request, 'wwii_explorer/home.html', context)
 

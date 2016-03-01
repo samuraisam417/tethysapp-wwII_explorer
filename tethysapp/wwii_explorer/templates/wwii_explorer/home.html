@@ -12,6 +12,14 @@
 <div id="map" class="map"></div>
 {% endblock %}
 
+{% block app_navigation_items %}
+<li class="title">Event Navigation</li>
+{% for event in events %}
+    <li class="hidden" data-page="{{ event.page}}">{{ event.title }}</li>
+{% endfor %}
+<li><a href="{% url 'wwii_explorer:map' %}">Start Exploring</a></li>
+{% endblock %}
+
 {% block app_actions %}
 <a href="{% url 'wwii_explorer:map' %}" id="btn-explore" class="btn btn-default">Start Exploring</a>
 <a href="{% url 'wwii_explorer:map' %}" class="btn btn-default btn-event hidden">Previous Event</a>
