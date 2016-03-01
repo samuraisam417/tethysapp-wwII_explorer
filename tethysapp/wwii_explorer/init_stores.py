@@ -20,7 +20,6 @@ def init_wwii_events_db(first_time):
 
         sheet = gc.open_by_key('1EQqDDAMS5bisSPYT0x8k6QpjRfl5SWxBQI9Qjg8ciGQ')
         worksheet = sheet.get_worksheet(0)
-        # values_list = worksheet.row_values(1)
         lists_of_event_data = worksheet.get_all_values()
 
         ignore_list = True
