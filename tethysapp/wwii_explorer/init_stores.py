@@ -15,7 +15,7 @@ def init_wwii_events_db(first_time):
         session = SessionMaker()
 
         scope = ['https://spreadsheets.google.com/feeds']
-        credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/shawn/Documents/credentials.json', scope)
+        credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/student/Documents/credentials.json', scope)
         gc = gspread.authorize(credentials)
 
         sheet = gc.open_by_key('1EQqDDAMS5bisSPYT0x8k6QpjRfl5SWxBQI9Qjg8ciGQ')

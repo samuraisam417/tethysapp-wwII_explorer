@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .model import SessionMaker, Event
+from django.http import JsonResponse
 
 
 @login_required()
@@ -29,7 +30,31 @@ def home(request):
 
     return render(request, 'wwii_explorer/home.html', context)
 
-def map(request):
+
+def get_page_data(request):
+    print "Running python script"
+
+    page_index = request.GET['pageIndex']
+
+    session = SessionMaker()
+
+    event = session.query(Event).filter(Event.page_index==page_index).one()
+
+    session.close()
+
+    event_attributes = {
+        'date_index': event.date_index,
+        'date': event.date,
+        'title': event.title,
+        'description': event.description,
+        'more_info': event.more_info,
+        'photo_url': event.photo_url,
+        'latitude': event.latitude,
+        'longitude': event.longitude,
+        'zoom_level': event.zoom_level,
+        'kml_files': event.kml_files
+    }
+
     # global page_index
 
     """
@@ -45,4 +70,7 @@ def map(request):
     # refresh map, send back to user
     context = {}
 
-    return render(request, 'wwii_explorer/map.html', context)
+    return JsonResponse({
+        'success': 'Extracted Event Data.',
+        'event': event_attributes
+    })
