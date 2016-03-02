@@ -1,95 +1,68 @@
-var map;
-var currentLayers;
-var popup;
+/*global
+ ol
+ */
 
-$(function () {
-    map = new ol.Map({
-        target: 'map',
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.MapQuest({layer: 'sat'})
-            })
-        ],
-        view: new ol.View({
-            center: ol.proj.fromLonLat([11.040, 48.339]),
-            zoom: 3
-        })
-    });
+var WWII_EXPLORER = (function () {
+    'use strict';
 
-    window.onhashchange = getPageData;
-    window.location.hash = '0';
+    var map;
+    var currentLayers = {};
+    var layerIndex = 0;
+    //var popup;
 
-    currentLayers = []
+    var getPageData = function () {
+        console.log("getPageData called");
+        var pageIndex = window.location.hash.substring(1);
+        $.ajax({
+            type: 'GET',
+            url: 'get-page-data',
+            data: {
+                'pageIndex': pageIndex
+            },
+            error: function () {
+                console.log("An Error Occurred");
+            },
+            success: function (data) {
+                var event = data.event;
+                var i;
 
-});
+                //Hide each of the events from the previous display from the map
+                console.log("Hiding existing layers");
+                for (i = 1; i <= layerIndex; i++) {
+                    map.getLayers().item(i).setVisible(false);
+                }
 
-var getPageData = function () {
-    console.log("getPageData called");
-    pageIndex = window.location.hash.substring(1);
-    $.ajax({
-        type: 'GET',
-        url: 'get-page-data',
-        data: {
-        'pageIndex': pageIndex
-        },
-        error: function(){
-        console.log("An Error Occurred")
-        },
-        success:function(data){
-        event = data.event
+                //Add new KML files to the map, relevant to the given event
+                console.log("Adding new KML files to map, relevant to the given event");
+                var kmlfilelist = event.kml_files.split(", ");
+                //currentLayers = kmlfilelist
+                kmlfilelist.forEach(function (kmlFilename) {
+                    //Check if layer already exists. If Layer exists, set visitbility to true. If Layer doesn't exist, then add to map.
+                    if (currentLayers.hasOwnProperty(kmlFilename)) {
+                        map.getLayers().item(currentLayers[kmlFilename]).setVisible(true);
+                    } else {
+                        var kmlLayer = new ol.layer.Vector({
+                            source: new ol.source.Vector({
+                                url: '/static/wwii_explorer/data/kml/' + kmlFilename,
+                                format: new ol.format.KML()
+                            })
+                        });
+                        map.addLayer(kmlLayer);
+                        currentLayers[kmlFilename] = layerIndex;
+                    }
+                });
 
-
-
-
-    //Hide each of the events from the previous display from the map
-    console.log("Hiding existing layers");
-    if (currentLayers.length > 0) {
-        currentLayers.forEach(function(maplayer) {
-            maplayer.setVisibility(false);
-        })
-    }
-
-    //Reset the arrway for current layers
-    console.log("Resetting the current layer list");
-    currentLayers = []
-
-    //Add new KML files to the map, relevant to the given event
-    console.log("Adding new KML files to map, relevant to the given event");
-    kmlfilelist = event.kml_files.split(", ")
-    //currentLayers = kmlfilelist
-    kmlfilelist.forEach(function(kmlfilename) {
-        //Check if layer already exists. If Layer exists, set visitbility to true. If Layer doesn't exist, then add to map.
-
-        //if (kmlfilename) {
-            //If layer exists, set visibility to true
-            //kmlfilename.setVisibility(true);
-            //currentLayers.push(kmlLayer);
-        //} else {
-
-            var kmlLayer = new ol.layer.Vector({
-                source: new ol.source.Vector({
-                  url: '/static/wwii_explorer/data/kml/'+kmlfilename,
-                  format: new ol.format.KML()
-                })
-            });
-
-            currentLayers.push(kmlLayer)
-            map.addLayer(kmlLayer);
-        //}
-
-    })
-
-    //Change map center and zoom
-    console.log("Setting zoom and center of map");
-    map.getView().setZoom(event.zoom_level)
-    map.getView().setCenter(ol.proj.fromLonLat([event.longitude, event.latitude]))
+                //Change map center and zoom
+                console.log("Setting zoom and center of map");
+                map.getView().setZoom(event.zoom_level);
+                map.getView().setCenter(ol.proj.fromLonLat([event.longitude, event.latitude]));
 
 
-    //Add data to map
-    //Change title
-    //Show/hide buttons
-    //apply pop-up text
-    //refresh map
+                //Add data to map
+                //Change title
+                //Show/hide buttons
+                //apply pop-up text
+                //refresh map
 
 
 //      add the code to run the code, load the map data.
@@ -102,10 +75,33 @@ var getPageData = function () {
 //      create info bubble for event
 //      refresh map, send back to user
 
-    },
-    });
+            }
+        });
 
-};
+    };
+
+    $(function () {
+
+        map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.MapQuest({layer: 'sat'})
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([11.040, 48.339]),
+                zoom: 3
+            })
+        });
+
+        map.getLayers().on('add', function () {
+            layerIndex++;
+        });
+
+        window.onhashchange = getPageData;
+        window.location.hash = '0';
+    });
 
 
 //$.
@@ -120,3 +116,6 @@ var getPageData = function () {
 //        })
 //      });
 //map.addLayer(kmlLayer);
+
+
+}());

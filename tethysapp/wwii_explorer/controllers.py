@@ -9,8 +9,6 @@ def home(request):
     """
     Controller for the app home page.
     """
-    print "IN HOME CONTROLLER"
-
     session = SessionMaker()
 
     events = session.query(Event).order_by(Event.page_index).all()
@@ -20,7 +18,6 @@ def home(request):
     event_page_and_title = []
 
     for event in events:
-        print event
         event_page_and_title.append({
             'page':  event.page_index,
             'title': event.title
