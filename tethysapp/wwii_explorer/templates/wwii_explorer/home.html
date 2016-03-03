@@ -5,25 +5,30 @@
 {% load staticfiles %}
 
 {% block app_content %}
-<h1>Welcome to the WWII Explorer!</h1>
-<p>Check out the world powers. Click the "Start Exploring" button to begin exploring WWII Events.</p>
-<p>Created by Shawn and Sam</p>
+<!--<h1>Welcome to the WWII Explorer!</h1>-->
+<!--<p>Check out the world powers. Click the "Start Exploring" button to begin exploring WWII Events.</p>-->
+
 <div id="map" class="map">
-    <!--<div id="popup" class="popup"></div>-->
+    <div id="popup"></div>
 </div>
+
 {% endblock %}
 
 {% block app_navigation_items %}
 <li class="title">Event Navigation</li>
 {% for event in events %}
-    <li class="hidden" data-page="{{ event.page}}">{{ event.title }}</li>
+    <li class="hidden nav-item" data-page="{{ event.page}}"><a href="#{{ event.page}}">{{ event.title }}</a></li>
 {% endfor %}
-<li><a href="{% url 'wwii_explorer:home' %}">Start Exploring</a></li>
+<!--<li><a href="{% url 'wwii_explorer:home' %}">Start Exploring</a></li>-->
+<li class="btn-explore"><a href="#1">Start Exploring</a></li>
 {% endblock %}
 
 {% block app_actions %}
-<a href="{% url 'wwii_explorer:home' %}" id="btn-explore" class="btn btn-default">Start Exploring</a>
-<a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event hidden">Previous Event</a>
-<a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event hidden">Home</a>
-<a href="{% url 'wwii_explorer:home' %}" class="btn btn-default btn-event hidden">Next Event</a>
+<!--<a href="{% url 'wwii_explorer:home' %}" id="btn-explore" class="btn btn-default">Start Exploring</a>-->
+<span>Created by Shawn and Sam</span>
+<a href="#1" class="btn btn-default btn-explore">Start Exploring</a>
+<a id="btn-next" class="btn btn-default hidden">Next Event</a>
+<a href="#0" id="btn-home" class="btn btn-default hidden">Home</a>
+<a id="btn-prev" class="btn btn-default hidden">Previous Event</a>
+
 {% endblock %}

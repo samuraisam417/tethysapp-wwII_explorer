@@ -1,13 +1,29 @@
 #map {
-height: 300px;
-width: 100%;
+    height: 500px;
+    width: 100%;
 }
 
 #flag {
-height: 50px;
-width: 30px;
+    height: 50px;
+    width: 30px;
 }
 
-li[data-page] {
-cursor: pointer
+#photo_url {
+    height: 100px;
+    width: 100px;
 }
+
+
+li[data-page] {
+    cursor: pointer;
+}
+
+.current-event {
+    background-color: #0066ff;
+}
+
+#popup {
+  padding-bottom: 45px;
+  width: 500px;
+}
+
