@@ -9,7 +9,10 @@
 <!--<p>Check out the world powers. Click the "Start Exploring" button to begin exploring WWII Events.</p>-->
 
 <div id="map" class="map">
-    <div id="popup"></div>
+</div>
+<div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
 </div>
 
 {% endblock %}
@@ -17,7 +20,7 @@
 {% block app_navigation_items %}
 <li class="title">Event Navigation</li>
 {% for event in events %}
-    <li class="hidden nav-item" data-page="{{ event.page}}"><a href="#{{ event.page}}">{{ event.title }}</a></li>
+<li class="hidden nav-item" data-page="{{ event.page}}"><a href="#{{ event.page}}">{{ event.title }}</a></li>
 {% endfor %}
 <!--<li><a href="{% url 'wwii_explorer:home' %}">Start Exploring</a></li>-->
 <li class="btn-explore"><a href="#1">Start Exploring</a></li>

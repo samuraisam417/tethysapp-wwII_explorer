@@ -1,5 +1,5 @@
 #map {
-    height: 500px;
+    height: 600px;
     width: 100%;
 }
 
@@ -8,22 +8,78 @@
     width: 30px;
 }
 
+#title {
+    max-width: 400px;
+}
 #photo_url {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    bottom: 24px;
+    right: 0;
+    margin: 15px;
 }
 
+#learn-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
 
+#description {
+    max-width: 400px;
+}
 li[data-page] {
     cursor: pointer;
 }
 
 .current-event {
     background-color: #0066ff;
+    border-radius: 4px;
 }
 
-#popup {
-  padding-bottom: 45px;
-  width: 500px;
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 45px;
+    left: -300px;
+    min-width: 600px;
+    min-height: 225px;
 }
-
+.ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 300px;
+    margin-left: -10px;
+}
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 300px;
+    margin-left: -11px;
+}
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+.ol-popup-closer:after {
+    content: "✖";
+    font-size: 18px;
+}
