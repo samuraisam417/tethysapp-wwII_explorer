@@ -13,6 +13,7 @@ class Event(Base):
     """
     Example SQLAlchemy DB Model
     """
+    # From the database, a library of event details are packaged together
     __tablename__ = 'wwii_events'
 
     # Columns

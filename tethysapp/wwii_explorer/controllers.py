@@ -9,10 +9,9 @@ def home(request):
     """
     Controller for the app home page.
     """
+    print "Contacting database for event details (home)"
     session = SessionMaker()
-
     events = session.query(Event).order_by(Event.page_index).all()
-
     session.close()
 
     event_page_and_title = []
@@ -29,14 +28,12 @@ def home(request):
 
 
 def get_page_data(request):
-    print "Running python script"
+    print "Contacting databse for event details (page change)"
 
     page_index = request.GET['pageIndex']
 
     session = SessionMaker()
-
     event = session.query(Event).filter(Event.page_index==page_index).one()
-
     session.close()
 
     event_attributes = {
@@ -52,19 +49,10 @@ def get_page_data(request):
         'kml_files': event.kml_files
     }
 
-    # global page_index
-
     """
     Controller for the app map page.
     """
-    # check event index (if at 0, go to 1)
-    #    if forward, do this; if back, do this
-    # look at event database
-    #   If Lat/Lon, then create point (point)
-    #   If no Lat/Lon, use KML file (line, polygon)
-    # create point for event
-    # create info bubble for event
-    # refresh map, send back to user
+
     context = {}
 
     return JsonResponse({

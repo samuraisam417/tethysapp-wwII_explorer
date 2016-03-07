@@ -15,6 +15,7 @@ def init_wwii_events_db(first_time):
         session = SessionMaker()
 
         scope = ['https://spreadsheets.google.com/feeds']
+        # Credentials are stored locally, to preserve integrity of database
         credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/student/Documents/credentials.json', scope)
         gc = gspread.authorize(credentials)
 

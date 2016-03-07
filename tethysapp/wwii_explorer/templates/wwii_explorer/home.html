@@ -5,9 +5,7 @@
 {% load staticfiles %}
 
 {% block app_content %}
-<!--<h1>Welcome to the WWII Explorer!</h1>-->
-<!--<p>Check out the world powers. Click the "Start Exploring" button to begin exploring WWII Events.</p>-->
-
+<!--Create block for the map and popup information bubbles-->
 <div id="map" class="map">
 </div>
 <div id="popup" class="ol-popup">
@@ -22,13 +20,13 @@
 {% for event in events %}
 <li class="hidden nav-item" data-page="{{ event.page}}"><a href="#{{ event.page}}">{{ event.title }}</a></li>
 {% endfor %}
-<!--<li><a href="{% url 'wwii_explorer:home' %}">Start Exploring</a></li>-->
 <li class="btn-explore"><a href="#1">Start Exploring</a></li>
 {% endblock %}
 
 {% block app_actions %}
-<!--<a href="{% url 'wwii_explorer:home' %}" id="btn-explore" class="btn btn-default">Start Exploring</a>-->
-<span>Created by Shawn and Sam</span>
+
+<span>Created by Shawn and Sam, Brigham Young University 2016.</span><br>
+<span>Disclaimer: Locations and event details were collected from various sources.</span>
 <a href="#1" class="btn btn-default btn-explore">Start Exploring</a>
 <a id="btn-next" class="btn btn-default hidden">Next Event</a>
 <a href="#0" id="btn-home" class="btn btn-default hidden">Home</a>

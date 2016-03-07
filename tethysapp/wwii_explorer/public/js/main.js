@@ -20,6 +20,7 @@ var WWII_EXPLORER = (function () {
     var $popupCloser;
 
     var getPageData = function () {
+        //This indicates that the page data number has been changed in the url
         console.log("getPageData called");
         var pageIndex = Number(window.location.hash.substring(1));
         $.ajax({
@@ -32,33 +33,35 @@ var WWII_EXPLORER = (function () {
                 console.log("An Error Occurred");
             },
             success: function (data) {
+                //When the page data is recognized then the current page is updateed,
+                //   instead of loading another HTML file
                 var event = data.event;
                 var numEvents;
                 var i;
                 var pageSelector;
 
-                //Update navigation bar
+                //Update navigation bar buttons and appearance
                 console.log("Updating Navigation Bar");
                 numEvents = ($navItems.length - 1);
-                if (pageIndex === 0) {
+                if (pageIndex === 0) {          //When home
                     $navItems.addClass("hidden");    //hide
                     $btnExplore.removeClass("hidden");    //show
                     $btnHome.addClass("hidden");    //hide
                     $btnNext.addClass("hidden");    //hide
                     $btnPrev.addClass("hidden");       //hide
-                } else if (pageIndex === 1) {
+                } else if (pageIndex === 1) {       //When on first event
                     $navItems.removeClass("hidden");   //show
                     $btnExplore.addClass("hidden");    //hide
                     $btnHome.removeClass("hidden");    //show
                     $btnNext.removeClass("hidden");    //show
                     $btnPrev.addClass("hidden");       //hide
-                } else if (pageIndex === numEvents) {
+                } else if (pageIndex === numEvents) {       //When on last event
                     $navItems.removeClass("hidden");    //show
                     $btnExplore.addClass("hidden");    //hide
                     $btnHome.removeClass("hidden");    //show
                     $btnNext.addClass("hidden");       //hide
                     $btnPrev.removeClass("hidden");    //show
-                } else {
+                } else {        //When on any other event
                     $navItems.removeClass("hidden");    //show
                     $btnExplore.addClass("hidden");    //hide
                     $btnHome.removeClass("hidden");    //show
@@ -113,6 +116,7 @@ var WWII_EXPLORER = (function () {
                 });
 
                 // Set popup content and position, then show popup
+                // Content is set is HTML format
                 var geometry = iconFeature.getGeometry();
                 var coord = geometry.getCoordinates();
                 var content;
@@ -123,7 +127,7 @@ var WWII_EXPLORER = (function () {
                     content = '<h3 id="title">' + event.title + '</h3>' +
                         '<p id="date"><b>' + event.date + '</b></p>' +
                         '<p id="description">' + event.description + '</p>' +
-                        '<a id="learn-more" href="' + event.more_info + '">Click here to learn more</a><br>' +
+                        '<a id="learn-more" target="_blank" href="' + event.more_info + '">Click here to learn more</a><br>' +
                         '<img id="photo_url" src="' + event.photo_url + '">';
                 }
                 $popupContent.html(content);
