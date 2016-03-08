@@ -86,6 +86,7 @@ var WWII_EXPLORER = (function () {
                 var kmlfilelist = event.kml_files.split(", ");
                 //currentLayers = kmlfilelist
                 kmlfilelist.forEach(function (kmlFilename) {
+                    console.log("Adding: "+kmlFilename);
                     //Check if layer already exists. If Layer exists, set visitbility to true. If Layer doesn't exist, then add to map.
                     if (currentLayers.hasOwnProperty(kmlFilename)) {
                         map.getLayers().item(currentLayers[kmlFilename]).setVisible(true);
@@ -121,8 +122,9 @@ var WWII_EXPLORER = (function () {
                 var coord = geometry.getCoordinates();
                 var content;
                 if (pageIndex === 0) {
-                    content = '<h3>Welcome</h3>' +
-                        '<p>' + event.description + '</p>';
+                    content = '<h3 id="title">Welcome</h3>' +
+                        '<p id="description">' + event.description + '</p>' +
+                        '<img id="photo_url" src="' + event.photo_url + '">';
                 } else {
                     content = '<h3 id="title">' + event.title + '</h3>' +
                         '<p id="date"><b>' + event.date + '</b></p>' +

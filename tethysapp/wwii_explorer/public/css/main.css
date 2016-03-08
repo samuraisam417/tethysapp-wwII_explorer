@@ -40,6 +40,10 @@ li[data-page] {
     border-radius: 4px;
 }
 
+.nav > li > a:focus {
+    background-color: #0066ff;
+}
+
 .ol-popup {
     position: absolute;
     background-color: white;

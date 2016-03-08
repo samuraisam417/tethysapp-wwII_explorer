@@ -9,7 +9,7 @@ def home(request):
     """
     Controller for the app home page.
     """
-    print "Contacting database for event details (home)"
+    print "Contacting database for event details (start)"
     session = SessionMaker()
     events = session.query(Event).order_by(Event.page_index).all()
     session.close()
@@ -28,7 +28,7 @@ def home(request):
 
 
 def get_page_data(request):
-    print "Contacting databse for event details (page change)"
+    print "Contacting database for event details (page change)"
 
     page_index = request.GET['pageIndex']
 
