@@ -61,7 +61,7 @@ var WWII_EXPLORER = (function () {
                     $btnHome.removeClass("hidden");    //show
                     $btnNext.addClass("hidden");       //hide
                     $btnPrev.removeClass("hidden");    //show
-                } else {        //When on any other event
+                } else {                                //When on any other event
                     $navItems.removeClass("hidden");    //show
                     $btnExplore.addClass("hidden");    //hide
                     $btnHome.removeClass("hidden");    //show
@@ -84,7 +84,6 @@ var WWII_EXPLORER = (function () {
                 //Add new KML files to the map, relevant to the given event
                 console.log("Adding new KML files to map, relevant to the given event");
                 var kmlfilelist = event.kml_files.split(", ");
-                //currentLayers = kmlfilelist
                 kmlfilelist.forEach(function (kmlFilename) {
                     console.log("Adding: "+kmlFilename);
                     //Check if layer already exists. If Layer exists, set visitbility to true. If Layer doesn't exist, then add to map.
@@ -102,6 +101,8 @@ var WWII_EXPLORER = (function () {
                     }
                 });
 
+                //Destroys the popup bubble of information
+                console.log("Popup destroyed");
                 $popup.popover('destroy');
 
                 //Add point to map, for pop-up
@@ -118,6 +119,7 @@ var WWII_EXPLORER = (function () {
 
                 // Set popup content and position, then show popup
                 // Content is set is HTML format
+                console.log("Creating content for popup window");
                 var geometry = iconFeature.getGeometry();
                 var coord = geometry.getCoordinates();
                 var content;
