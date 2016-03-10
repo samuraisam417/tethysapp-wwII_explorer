@@ -18,18 +18,17 @@
 {% block app_navigation_items %}
 <li class="title">Event Navigation</li>
 {% for event in events %}
-<li class="hidden nav-item" data-page="{{ event.page}}"><a href="#{{ event.page}}">{{ event.title }}</a></li>
+<li class="hidden nav-item" data-page="{{event.page}}"><a href="#{{event.page}}">{{ event.title }}</a></li>
 {% endfor %}
 <li class="btn-explore"><a href="#1">Start Exploring</a></li>
 {% endblock %}
 
 {% block app_actions %}
-
-<span>Created by Shawn and Sam, Brigham Young University 2016.</span><br>
-<span>Disclaimer: Locations and event details were collected from various sources.</span>
 <a href="#1" class="btn btn-default btn-explore">Start Exploring</a>
 <a id="btn-next" class="btn btn-default hidden">Next Event</a>
 <a href="#0" id="btn-home" class="btn btn-default hidden">Home</a>
 <a id="btn-prev" class="btn btn-default hidden">Previous Event</a>
 
+<span>Created by Shawn and Sam, Brigham Young University 2016.</span><br>
+<span>Disclaimer: Locations and event details were collected from various sources.</span>
 {% endblock %}

@@ -101,10 +101,6 @@ var WWII_EXPLORER = (function () {
                     }
                 });
 
-                //Destroys the popup bubble of information
-                console.log("Popup destroyed");
-                $popup.popover('destroy');
-
                 //Add point to map, for pop-up
                 console.log("Add point to map");
                 iconFeature.setGeometry(new ol.geom.Point(ol.proj.fromLonLat([event.longitude, event.latitude])));
@@ -146,6 +142,7 @@ var WWII_EXPLORER = (function () {
 
     };
 
+    // When web page is initialized
     $(function () {
         $navItems = $(".nav-item");
         $btnExplore = $(".btn-explore");
@@ -226,13 +223,6 @@ var WWII_EXPLORER = (function () {
             layerIndex++;
         });
 
-        //mapOverlay = new ol.Overlay({
-        //    element: $popup[0],
-        //    positioning: 'bottom-center',
-        //    stopEvent: false
-        //});
-        //map.addOverlay(mapOverlay);
-
         // display popup on click
         map.on('click', function (evt) {
             console.log("Clicked on map");
@@ -276,7 +266,10 @@ var WWII_EXPLORER = (function () {
             return false;
         });
 
+        //Triggers event update function
         window.onhashchange = getPageData;
+
+        //Changes URL
         window.location.hash = '0';
     });
 }());
